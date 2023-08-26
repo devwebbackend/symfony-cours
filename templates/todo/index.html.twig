@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TodoController!{% endblock %}
+
+{% block body %}
+   {% for message in app.session.flashBag.get('info') %}
+<div class="alert alert-success">{{message}}<div>
+{% endfor%} 
+   {% for message in app.session.flashBag.get('error') %}
+<div class="alert alert-danger">{{message}}<div>
+{% endfor%} 
+   {% for message in app.session.flashBag.get('succes') %}
+<div class="alert alert-info">{{message}}<div>
+{% endfor%} 
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+ <link rel="stylesheet" href="{{asset('node_modules/bootstrap/dist/css/bootstrap.min.css')}}">
+<div class="example-wrapper">
+{#    {% for list,elemt in app.session.get('todo') %}
+{{list}} {{elemt}}<br>
+{% endfor%}  #}
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ 'C:/Users/mohamed/symphony_project/my_project/src/Controller/TodoController.php'|file_link(0) }}">src/Controller/TodoController.php</a></code></li>
+        <li>Your template at <code><a href="{{ 'C:/Users/mohamed/symphony_project/my_project/templates/todo/index.html.twig'|file_link(0) }}">templates/todo/index.html.twig</a></code></li>
+    </ul>
+</div>
+{% endblock %}

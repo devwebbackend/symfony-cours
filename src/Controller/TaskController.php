@@ -1,24 +1,37 @@
-// src/Controller/LuckyController.php
+<?php
+// src/Controller/TaskController.php
 namespace App\Controller;
 
+use PharIo\Manifest\Requirement;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class TaskController
+
+class TaskController extends AbstractController
 {
-/**
-* @Route("/lucky/number/{max}", name="app_lucky_number")
-*/
-public function number(int $max): Response
+
+/* #[route('/first/{name}', name:'start')]
+public function number(Request $request,$name): Response
 {
-$number = random_int(0, $max);
 
-return new Response(
-'<html>
+dd($request);
+return $this->render(
+ 'task/index.html.twig',['name'=>$name]
+);
+} */
+#[route('/multi/{num1<\d+>}/{num2<\d+}',
+ name:'multiplication',
+ //Requirements:['num1'=> '\d+', 'num2'=> '\d+']
+ )]
+public function number(Request $request,$num1, $num2): Response
+{
 
-<body>Lucky number: '.$number.'</body>
+    $resultat = $num1 * $num2;
 
-</html>'
+return new response(
+ "<h1>$resultat</h1>"
 );
 }
 }
